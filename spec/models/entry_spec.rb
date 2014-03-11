@@ -12,4 +12,29 @@ describe Entry do
   it { should respond_to( :body) }
   it { should respond_to( :user) }
   it { should be_valid }
+
+  describe "when title is absent" do
+  	before { 
+  		@entry.title = ""
+  	}
+
+  	it { should_not be_valid }
+  end
+
+  describe "when body is absent" do
+   	before { 
+   		@entry.body = ""
+   	}
+   	it { should_not be_valid }
+  end 
+
+  describe "when user is absent" do
+  	before { 
+  		@entry.user = nil
+  	}
+
+  	it { should_not be_valid }
+  end 
+
+  
 end

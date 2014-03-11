@@ -1,1 +1,17 @@
-<%= render signed_in? ? "static_pages/user_home" : "static_pages/welcome_home" %>
+<div class="row">
+	<aside class="span4">
+		<section>
+			<%= render 'shared/user_info' if signed_in? %>
+		</section>
+		<section>
+			<%= render 'shared/stats' if signed_in? %>
+		</section>
+		<section>
+			<%= link_to "Create new entry", new_entry_path if signed_in? %>
+		</section>
+	</aside>
+	<div class="span8">
+		<h3>Stories</h3>
+		<%= render 'shared/entries' %>
+	</div>
+</div>

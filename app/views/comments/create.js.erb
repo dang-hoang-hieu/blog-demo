@@ -1,0 +1,2 @@
+$(".new_comment textarea").val("")
+$("ol#comment").prepend("<%= escape_javascript(render 'shared/comment', comment: @comment).html_safe %>")
