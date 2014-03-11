@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :following_entries]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :guest, only: [:new, :create]
@@ -51,6 +51,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followed_users.paginate(page: params[:page])
     render 'show_follow'
+  end
+
+  def following_entries
+    @following_entries = current_user.following_entries.paginate(page: params[:page])
   end
 
   def followers

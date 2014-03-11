@@ -7,6 +7,12 @@
         <%= @user.name %>
       </h1>
     </section>
+    <section>
+      <%= link_to "Create new entry", new_entry_path if signed_in? %>
+    </section>
+    <section>
+      <%= link_to "My following entries", '/following-entries' if signed_in? %>
+    </section>
   </aside>
   <div class="span8">
     <%= render 'follow_form' if signed_in? %>

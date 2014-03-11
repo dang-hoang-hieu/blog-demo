@@ -36,5 +36,12 @@ describe Entry do
   	it { should_not be_valid }
   end 
 
-  
+  describe " get entries from followed_users" do
+    before do
+      @user = FactoryGirl.create(:user)
+    @followed_user = FactoryGirl.create(:user)
+    @user.follow!(@followed_user)
+    @entry = @user.entries.create(title: "title demo", body: "noi dung body")
+    end
+  end
 end

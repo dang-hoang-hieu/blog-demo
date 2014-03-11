@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
     has_many :followers, through: :reverse_relationships, source: :follower
 
     has_many :comments, dependent: :destroy
-
+    
 	validates :name, presence: true, length: { maximum: 50}
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i 
   	validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
@@ -26,10 +26,9 @@ class User < ActiveRecord::Base
     	Digest::SHA1.hexdigest(token.to_s)
     end
     
-    # def feed
-    	
-    # 	Micropost.from_users_followed_by(self)
-    # end
+    def following_entries    	
+    	Entry.from_users_followed_by(self)
+    end
 
     def following?(other_user)
         relationships.find_by(followed_id: other_user.id)
