@@ -6,7 +6,7 @@
   <section>
     <%= wrap(comment.content) %>
     <br>
-    <span class="timestamp">Posted <%= time_ago_in_words(comment.created_at) %> ago.</span>
+    <span class="timestamp">Posted <%= time_ago_in_words(comment.created_at) %> ago at <%= comment.created_at.strftime('%Y-%m-%d') %></span>
     <%= render "shared/delete_link", object: comment %>
   </section>  
 </li>

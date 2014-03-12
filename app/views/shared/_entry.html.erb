@@ -6,7 +6,7 @@
     <span class="content"><%= wrap(entry.body.slice(0,300)<<'...') %></span>
     <br/>
     <span class="timestamp">
-      Posted <%= time_ago_in_words(entry.created_at) %> ago.
+      Posted <%= time_ago_in_words(entry.created_at) %> ago at <%= entry.created_at.strftime('%Y-%m-%d') %>
     </span>
   
   <%= render "shared/delete_link", object: entry %>
