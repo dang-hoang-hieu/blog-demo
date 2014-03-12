@@ -6,15 +6,14 @@ class CommentsController < ApplicationController
   	@comment = current_user.comments.build(comments_params)
 
   	if @comment.save
-  		@status = "comment created"  		  		
+  		flash.now[:success] = "comment created"  		
   	else
-  		@status = "error"
+  		flash.now[:error] = "error"  		
   	end
-
   	respond_to do |format|
   		format.html { redirect_to root_url}
   		format.js
-  	end
+  	end  		  	
   end
 
   def destroy  	

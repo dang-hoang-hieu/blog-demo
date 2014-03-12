@@ -31,8 +31,8 @@ class EntriesController < ApplicationController
 			flash[:success] = "You've just created an entry"
 			redirect_to root_url
 		else
-			flash[:error] = "errors in comment"
-			redirect_to root_url
+			flash[:error] = "errors in create entry"
+			render 'new'
 		end
 	end
 

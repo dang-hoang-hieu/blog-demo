@@ -1,2 +1,9 @@
 $(".new_comment textarea").val("")
-$("ol#comment").prepend("<%= escape_javascript(render 'shared/comment', comment: @comment).html_safe %>")
+$("ol#comment #error_explanation").remove();
+$("ol#comment").prepend("<%= 
+    if !flash[:success].nil? 
+      escape_javascript(render 'shared/comment', comment: @comment).html_safe 
+    else
+      escape_javascript(render 'shared/error_messages', object: @comment).html_safe 
+    end
+  %>")
