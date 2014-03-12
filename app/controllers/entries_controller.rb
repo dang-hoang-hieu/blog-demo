@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-	before_action :signed_in_user, only: [ :edit, :update, :destroy] 
+	before_action :signed_in_user, except: :show 
 	before_action :correct_user, only: [:edit, :update, :destroy]
 
 	def new
@@ -31,7 +31,7 @@ class EntriesController < ApplicationController
 			flash[:success] = "You've just created an entry"
 			redirect_to root_url
 		else
-			flash[:error] = "errors in create entry"
+			flash.now[:error] = "errors in create entry"
 			render 'new'
 		end
 	end
@@ -41,8 +41,7 @@ class EntriesController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to root_url }	
 			format.js
-		end
-		
+		end		
 	end
 
 	private

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy]
+  before_action :signed_in_user
   before_action :correct_user, only: [:destroy]
 
   def create
@@ -22,9 +22,7 @@ class CommentsController < ApplicationController
 		format.html { redirect_to root_url }	
 		format.js
 	end
-  end
-
-  
+  end  
 
   private
   	def comments_params

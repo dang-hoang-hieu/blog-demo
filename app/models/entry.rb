@@ -3,7 +3,7 @@ class Entry < ActiveRecord::Base
 	has_many :comments, dependent: :destroy
 	validates :user_id, presence: true
 	validates :body, presence: true	
-	validates :title, presence: true
+	validates :title, presence: true, length: { maximum: 200}
 	default_scope -> { order('created_at DESC') }
 
 	def self.from_users_followed_by(user)

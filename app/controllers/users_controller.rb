@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers, :following_entries]
+  before_action :signed_in_user, except: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :guest, only: [:new, :create]
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "welcome to sample app"
+      flash[:success] = "welcome to Blog demo app"
       redirect_to @user
     else
       render 'new'
@@ -78,9 +78,5 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to root_url unless current_user.admin?
-    end
-
-    def guest
-      redirect_to root_url if signed_in?
     end
 end

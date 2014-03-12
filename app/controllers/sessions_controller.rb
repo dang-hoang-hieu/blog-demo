@@ -1,14 +1,15 @@
 class SessionsController < ApplicationController
-	def new
+	before_action :signed_in_user, only: :destroy
+	before_action :guest, only: [:create, :new]
 
+	def new
 	end
 
 	def create
 		user = User.find_by_email(params[:session][:email].downcase)
 		if user && user.authenticate(params[:session][:password])
 			sign_in user
-			flash[:success] = "Sign in successfully"
-			# redirect_to user
+			flash[:success] = "Sign in successfully"			
 			redirect_back_or(user)
 		else
 			flash.now[:error] = "email or password is incorrect"
