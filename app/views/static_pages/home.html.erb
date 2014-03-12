@@ -7,7 +7,7 @@
 			<%= render 'shared/stats' if signed_in? %>
 		</section>
 		<section>
-			<%= link_to "Create new entry", new_entry_path if signed_in? %>
+			<%= link_to "Create new entry", new_entry_path, :"data-no-turbolink" => true if signed_in? %>
 		</section>
 		<section>
 			<%= link_to "My following entries", '/following-entries' if signed_in? %>
