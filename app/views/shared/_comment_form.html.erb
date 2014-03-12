@@ -4,10 +4,6 @@
 		<div class="span1"><%= link_to gravatar_for(current_user), current_user %></div>
 		<div class="span4"><%= f.text_area :content, placeholder: "200 characters allowed", "data-maximum" => "200" %></div>
 	</div>	
-	<div class="row">
-	  <div class="span3 offset4 pull-right">
-	    <h2 id="character-left">200 character lefts</h2>
-	  </div>
-    </div>
+	<%= render partial: 'shared/check_length', locals: { :@length => 200} %>
 	<%= f.submit "comment", class: "btn btn-primary" %>
 <% end %>
