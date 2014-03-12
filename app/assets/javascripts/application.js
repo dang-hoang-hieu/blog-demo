@@ -15,3 +15,15 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+
+$(function(){
+	$("textarea#comment_content, input#entry_title").bind('input propertychange', function(){
+		var character_left =  $(this).data("maximum") - $(this).val().length
+		if (character_left > 0) {
+			$("h2#character-left").text(  character_left + " characters left." )
+		}else {
+			$("h2#character-left").html( "<span class='alert alert-error'> you type too much characters! </span>" )
+		}
+	});
+})
+

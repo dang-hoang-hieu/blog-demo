@@ -6,8 +6,12 @@
     <%= form_for(@entry) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :title %>
-      <%= f.text_field :title %>
-
+      <%= f.text_field :title, placeholder: "only 200 characters allowed", "data-maximum" => "200" %>
+      <div class="row">
+      <div class="span3 offset4 pull-right">
+        <h2 id="character-left">200 character lefts</h2>
+      </div>
+      </div>
       <%= f.label :body %>
       <%= f.text_area :body, style: "height: 300px" %>
       
