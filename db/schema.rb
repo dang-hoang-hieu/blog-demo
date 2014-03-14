@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311075115) do
+ActiveRecord::Schema.define(version: 20140314151705) do
 
   create_table "comments", force: true do |t|
     t.string   "content"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20140311075115) do
 
   add_index "entries", ["id"], name: "index_entries_on_id"
 
+  create_table "entries_tags", id: false, force: true do |t|
+    t.integer  "entry_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "entries_tags", ["entry_id"], name: "index_entries_tags_on_entry_id"
+  add_index "entries_tags", ["tag_id"], name: "index_entries_tags_on_tag_id"
+
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -45,6 +55,12 @@ ActiveRecord::Schema.define(version: 20140311075115) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

@@ -1,9 +1,10 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    make_users
-    make_entries
-    make_relationships
+    # make_users
+    # make_entries
+    # make_relationships
+    make_tags
   end
 end
 
@@ -46,4 +47,16 @@ def make_relationships
   followers      = users[3..40]
   followed_users.each { |followed| user.follow!(followed) }
   followers.each      { |follower| follower.follow!(user) }
+end
+
+# make tags and relationship with entries
+def make_tags
+  50.times do
+    Tag.create!(name: Faker::Lorem.sentence(1))
+  end
+
+  tags = Tag.all
+  tags.each do |tag|
+    EntriesTags.create!(tag_id: tag.id, entry_id: (1 + rand(99)))
+  end
 end
